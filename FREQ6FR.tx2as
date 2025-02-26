@@ -1,0 +1,62 @@
+** This is Leonard Kleinrock's listing for his Program for a Simulation of a Communication Net.
+**
+** This program is described in his PhD thesis.
+**
+** Page numbers are taken from the physical pages of the listing PDF,
+** and are therefore in decimal.  The page numbering on the document
+** itself (page 1 being on page 4 of the PDF) is apparently in octal.
+
+** Since the source is a listing, it includes the object code data and
+** addresses.
+
+** Page  1: Cover
+** Page  2: Inside cover
+** Page  3: blank
+** Page  4: symbol table
+** Page  5: symbol table (continued)
+** Page  6: symbol table (continued)
+** Page  7: symbol table (continued)
+** Page  8: symbol table (continued)
+
+** Page  9: equality definitions
+** Page 10: equality definitions (continued)
+** Page 11: equality definitions (continued)
+
+** Page 12: blank
+
+** Page 13: Macros
+** Page 14: Macros (continued)
+** Page 15: Macros (continued)
+** Page 16: Macros (continued)
+** Page 17: Macros (continued)
+
+** Now we actually define the macros.  When the listing is generated
+** these are printed at the front, and so they are not duplicated in
+** the rest of the listing.
+
+☛☛DEF UP≡FACT·JUMP
+      LDA {1}
+      SCA {FACT+1·}
+      STA UPPER
+      JPQ JUMP
+☛☛EMD
+
+☛☛DEF QFIX≡
+      LDA {DISPTBL+N-1}
+      ¹STA SPOTS
+      ¹STA LINESTRETCH+1
+☛☛EMD
+
+
+☛☛DEF HP OS≡JUMP·DM
+      SCA SLIDE+(DM)-(DM)
+      ²²LDA HORPOS
+      ADX@sub_alpha@@sub_3@ HORPOS
+
+      ** Instead of using the p|q T construct (as described in section
+      ** 6-2.8 of the User Handbook but which currently is not
+      ** supported), we write the equivalent form p{T@sub_q}}*.
+      STA@sub_alpha@@sub_1@ {HORPOS@sub_alpha@@sub_2@}*
+
+      ** ¹JNX@sub_alpha@@sub_1@ JUMP+1
+☛☛EMD
